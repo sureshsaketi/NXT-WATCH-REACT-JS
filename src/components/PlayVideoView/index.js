@@ -65,10 +65,10 @@ const PlayVideoView = props => {
           viewCount,
         } = videoDetails
 
-        //   const publishedTime = formatDistanceToNow(new Date(publishedAt))
-        //     .split(' ')
-        //     .slice(1)
-        //     .join(' ')
+        const publishedTime = formatDistanceToNow(new Date(publishedAt))
+          .split(' ')
+          .slice(1)
+          .join(' ')
 
         const saveVideo = () => {
           addVideo(videoDetails)
@@ -85,7 +85,7 @@ const PlayVideoView = props => {
                   <ViewsContainer>
                     <ViewsText>{viewCount} views</ViewsText>
                     <BsDot color="#616e7c" size={25} />
-                    <ViewsText>{publishedAt} ago</ViewsText>
+                    <ViewsText>{publishedTime} ago</ViewsText>
                   </ViewsContainer>
 
                   <ButtonsContainer>

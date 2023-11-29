@@ -25,6 +25,7 @@ import {
   SearchInput,
   SearchButton,
 } from './styledComponents'
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -118,8 +119,11 @@ class Home extends Component {
     )
   }
 
-  renderSearchBarField = () => {
+  renderSearchBarField = isDarkTheme => {
     const {searchInput} = this.state
+    const bgColor = isDarkTheme ? '#181818' : '#f9f9f9'
+    const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+    const buttonBg = isDarkTheme ? '#424242' : '#f1f1f1'
 
     return (
       <SearchBarContainer>
@@ -128,8 +132,15 @@ class Home extends Component {
           value={searchInput}
           onChange={this.onChangeInput}
           placeholder="Search"
+          textColor={textColor}
+          bgColor={bgColor}
         />
-        <SearchButton type="button" onClick={this.getVideosList}>
+        <SearchButton
+          type="button"
+          onClick={this.getVideosList}
+          buttonBg={buttonBg}
+          textColor={textColor}
+        >
           <BiSearchAlt2 />
         </SearchButton>
       </SearchBarContainer>
@@ -167,17 +178,28 @@ class Home extends Component {
 
   render() {
     return (
-      <HomePageContainer>
-        <Header />
-        <HomeContainer data-testid="home">
-          <NavigationBar />
-          <BannerAndSearchBarContainer>
-            {this.renderBannerSection()}
-            {this.renderSearchBarField()}
-            {this.renderAllVideos()}
-          </BannerAndSearchBarContainer>
-        </HomeContainer>
-      </HomePageContainer>
+      <ThemeAndVideoContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+
+          const bgColor = isDarkTheme ? '#181818' : '#f9f9f9'
+          const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+
+          return (
+            <HomePageContainer bgColor={bgColor}>
+              <Header />
+              <HomeContainer data-testid="home">
+                <NavigationBar />
+                <BannerAndSearchBarContainer>
+                  {this.renderBannerSection()}
+                  {this.renderSearchBarField(isDarkTheme)}
+                  {this.renderAllVideos()}
+                </BannerAndSearchBarContainer>
+              </HomeContainer>
+            </HomePageContainer>
+          )
+        }}
+      </ThemeAndVideoContext.Consumer>
     )
   }
 }

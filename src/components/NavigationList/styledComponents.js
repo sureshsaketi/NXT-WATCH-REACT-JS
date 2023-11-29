@@ -21,6 +21,7 @@ export const NavLink = styled(Link)`
 `
 
 export const MenuItemContainer = styled.li`
+  background-color: ${props => props.bgColor};
   display: flex;
   align-items: center;
   gap: 15px;
@@ -36,4 +37,5 @@ export const MenuItemName = styled.p`
   font-weight: 400;
   font-size: 14px;
   font-weight: 400;
+  color: ${props => props.textColor};
 `

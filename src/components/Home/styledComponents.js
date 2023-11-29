@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const HomePageContainer = styled.div`
   height: 100vh;
   overflow-y: auto;
+  background-color: ${props => props.bgColor};
 `
 
 export const HomeContainer = styled.div`
@@ -85,6 +86,8 @@ export const BannerCrossButton = styled.button`
   align-self: flex-end;
 `
 export const SearchBarContainer = styled.div`
+  background-color: ${props => props.bgColor};
+  color: ${props => props.textColor};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -100,6 +103,8 @@ export const SearchBarContainer = styled.div`
 `
 
 export const SearchInput = styled.input`
+  background-color: ${props => props.bgColor};
+  color: ${props => props.textColor};
   border: none;
   padding-left: 10px;
   color: #1e293b;
@@ -110,7 +115,8 @@ export const SearchInput = styled.input`
   flex-grow: 1;
 `
 export const SearchButton = styled.button`
-  background-color: ##f4f4f4;
+  background-color: ${props => props.buttonBg};
+  color: ${props => props.textColor};
   border: none;
   height: 100%;
   width: 20%;

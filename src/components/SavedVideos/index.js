@@ -1,4 +1,4 @@
-import {SiYoutubegaming} from 'react-icons/si'
+import {HiFire} from 'react-icons/hi'
 
 import Header from '../Header'
 import NavigationBar from '../NavigationBar'
@@ -28,7 +28,7 @@ const SavedVideos = () => (
       const renderSavedVideosTopView = () => (
         <SavedVideosTop>
           <SavedVideosImageContainer>
-            <SiYoutubegaming size="24px" color="#ff0b37" />
+            <HiFire size="24px" color="#ff0b37" />
           </SavedVideosImageContainer>
           <SavedVideosHeading>Saved Videos</SavedVideosHeading>
         </SavedVideosTop>

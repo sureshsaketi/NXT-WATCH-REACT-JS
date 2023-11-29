@@ -2,8 +2,9 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 export const Navbar = styled.nav`
-  height: 68px;
+  height: 60px;
   padding: 10px 15px;
+  background-color: ${props => props.bgColor};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +15,9 @@ export const Navbar = styled.nav`
     padding: 10px 0px;
   }
 `
-export const LogoContainer = styled.div``
+export const LogoContainer = styled.div`
+  background-color: ${props => props.bgColor};
+`
 
 export const LogoImage = styled.img`
   height: 28px;
@@ -25,6 +28,8 @@ export const NavItemsMobileContainer = styled.ul`
   display: flex;
   align-items: center;
   gap: 20px;
+  background-color: ${props => props.bgColor};
+
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -39,6 +44,8 @@ export const NavItemsLargeContainer = styled.ul`
   display: flex;
   align-items: center;
   gap: 20px;
+  background-color: ${props => props.bgColor};
+
   @media screen and (max-width: 767px) {
     display: none;
   }
@@ -48,8 +55,8 @@ export const ProfileImage = styled.img`
   height: 28px;
 `
 export const LogoutButton = styled.button`
-  border: 1px solid #3b82f6;
-  color: #3b82f6;
+  border: 1px solid ${props => props.color};
+  color: ${props => props.color};
   font-family: 'Roboto';
   font-size: 16px;
   font-weight: 500;
@@ -64,6 +71,7 @@ export const LogoutButton = styled.button`
 export const HamburgerMenuButton = styled.button`
   border: none;
   background-color: transparent;
+  color: ${props => props.color};
   outline: none;
   cursor: pointer;
 `
@@ -74,12 +82,13 @@ export const PopupContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: ${props => props.bgColor};
 `
 export const CloseButton = styled.button`
   border: none;
   background-color: transparent;
   font-size: 20px;
+  color: ${props => props.color};
   cursor: pointer;
   outline: none;
   align-self: flex-end;
@@ -87,7 +96,7 @@ export const CloseButton = styled.button`
   margin-top: 40px;
 `
 export const LogoutButtonsContainer = styled.div`
-  background-color: #f8fafc;
+  background-color: ${props => props.bgColor};
   padding: 20px;
   border-radius: 8px;
   display: flex;
@@ -98,7 +107,7 @@ export const LogoutButtonsContainer = styled.div`
   gap: 35px;
 `
 export const LogoutText = styled.p`
-  color: #00306e;
+  color: ${props => props.color};
   font-family: 'Roboto';
   font-weight: 500;
   text-align: center;

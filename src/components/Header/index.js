@@ -3,7 +3,8 @@ import Cookies from 'js-cookie'
 
 import Popup from 'reactjs-popup'
 
-import {FaMoon} from 'react-icons/fa'
+import {BsMoon} from 'react-icons/bs'
+import {IoSunnyOutline} from 'react-icons/io5'
 import {GiHamburgerMenu} from 'react-icons/gi'
 
 import {FiLogOut} from 'react-icons/fi'
@@ -36,7 +37,10 @@ import {
 const Header = props => (
   <ThemeAndVideoContext.Consumer>
     {value => {
-      const {changeTab} = value
+      const {changeTab, isDarkTheme, toggleTheme} = value
+
+      const bgColor = isDarkTheme ? '#181818' : '#ffffff'
+      const color = isDarkTheme ? '#ffffff' : '#181818'
 
       const changeTabToHome = () => {
         changeTab('Home')
@@ -48,9 +52,15 @@ const Header = props => (
         history.replace('/login')
       }
 
+      const onChangeTheme = () => {
+        toggleTheme()
+      }
+
       const renderLogoutPopup = () => close => (
-        <LogoutButtonsContainer>
-          <LogoutText>Are you sure you want to logout?</LogoutText>
+        <LogoutButtonsContainer bgColor={isDarkTheme ? '#181818' : '#f8fafc'}>
+          <LogoutText color={isDarkTheme ? '#ffffff' : '#00306e'}>
+            Are you sure you want to logout?
+          </LogoutText>
           <ButtonsContainer>
             <CancelButton
               type="button"
@@ -66,8 +76,12 @@ const Header = props => (
 
       const renderNavItemsMobileView = () => (
         <NavItemsMobileContainer>
-          <NavItem>
-            <FaMoon />
+          <NavItem onClick={onChangeTheme}>
+            {isDarkTheme ? (
+              <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
+            ) : (
+              <BsMoon color={isDarkTheme ? '#ffffff' : null} />
+            )}
           </NavItem>
           <NavItem>
             <Popup
@@ -76,6 +90,7 @@ const Header = props => (
                 <HamburgerMenuButton
                   type="button"
                   data-testid="hamburgerIconButton"
+                  color={color}
                 >
                   <GiHamburgerMenu size="25" />
                 </HamburgerMenuButton>
@@ -83,12 +98,13 @@ const Header = props => (
             >
               {close => (
                 <>
-                  <PopupContainer>
+                  <PopupContainer bgColor={bgColor}>
                     <CloseButton
                       type="button"
                       className="close-button"
                       onClick={() => close()}
                       data-testid="closeButton"
+                      color={color}
                     >
                       <IoMdClose size="25" />
                     </CloseButton>
@@ -105,6 +121,7 @@ const Header = props => (
                 <HamburgerMenuButton
                   type="button"
                   data-testid="hamburgerIconButton"
+                  color={color}
                 >
                   <FiLogOut size="24" />
                 </HamburgerMenuButton>
@@ -118,8 +135,12 @@ const Header = props => (
 
       const renderNavItemsLargeView = () => (
         <NavItemsLargeContainer>
-          <NavItem>
-            <FaMoon />
+          <NavItem onClick={onChangeTheme}>
+            {isDarkTheme ? (
+              <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
+            ) : (
+              <BsMoon color={isDarkTheme ? '#ffffff' : null} />
+            )}
           </NavItem>
           <NavItem>
             <ProfileImage
@@ -130,7 +151,14 @@ const Header = props => (
           <NavItem>
             <Popup
               modal
-              trigger={<LogoutButton type="button">Logout</LogoutButton>}
+              trigger={
+                <LogoutButton
+                  type="button"
+                  color={isDarkTheme ? '#ffffff' : '#3b82f6'}
+                >
+                  Logout
+                </LogoutButton>
+              }
             >
               {renderLogoutPopup()}
             </Popup>
@@ -139,11 +167,15 @@ const Header = props => (
       )
 
       return (
-        <Navbar>
+        <Navbar bgColor>
           <LogoContainer>
             <LinkItem to="/">
               <LogoImage
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                src={
+                  isDarkTheme
+                    ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                    : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                }
                 alt="website logo"
                 onClick={changeTabToHome}
               />

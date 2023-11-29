@@ -16,9 +16,9 @@ const NavigationList = () => (
   <ThemeAndVideoContext.Consumer>
     {value => {
       const {activeTab, changeTab, isDarkTheme} = value
-      const bgColor = isDarkTheme ? '#231f20' : '#ffffff'
-      const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
-      const activeTabBg = isDarkTheme ? '#475569' : '#cbd5e1'
+      const bgColor = isDarkTheme ? '#181818' : '#ffffff'
+      const textColor = isDarkTheme ? '#f9f9f9' : '#181818'
+      const activeTabBg = isDarkTheme ? '#383838' : '#cbd5e1'
 
       const onClickHomeTab = () => {
         changeTab('Home')
@@ -39,42 +39,54 @@ const NavigationList = () => (
       return (
         <MenuItemsListContainer bgColor={bgColor}>
           <NavLink to="/">
-            <MenuItemContainer onClick={onClickHomeTab}>
+            <MenuItemContainer
+              onClick={onClickHomeTab}
+              bgColor={activeTab === 'Home' ? activeTabBg : 'none'}
+            >
               <AiFillHome
                 size="18"
                 color={activeTab === 'Home' ? '#ff0b37' : '#909090'}
               />
-              <MenuItemName>Home</MenuItemName>
+              <MenuItemName textColor={textColor}>Home</MenuItemName>
             </MenuItemContainer>
           </NavLink>
 
           <NavLink to="/trending">
-            <MenuItemContainer onClick={onClickTrendingTab}>
+            <MenuItemContainer
+              onClick={onClickTrendingTab}
+              bgColor={activeTab === 'Trending' ? activeTabBg : 'none'}
+            >
               <HiFire
                 size="18"
                 color={activeTab === 'Trending' ? '#ff0b37' : '#909090'}
               />
-              <MenuItemName>Trending</MenuItemName>
+              <MenuItemName textColor={textColor}>Trending</MenuItemName>
             </MenuItemContainer>
           </NavLink>
 
           <NavLink to="/gaming">
-            <MenuItemContainer onClick={onClickGamingTab}>
+            <MenuItemContainer
+              onClick={onClickGamingTab}
+              bgColor={activeTab === 'Gaming' ? activeTabBg : 'none'}
+            >
               <SiYoutubegaming
                 size="18"
                 color={activeTab === 'Gaming' ? '#ff0b37' : '#909090'}
               />
-              <MenuItemName>Gaming</MenuItemName>
+              <MenuItemName textColor={textColor}>Gaming</MenuItemName>
             </MenuItemContainer>
           </NavLink>
 
           <NavLink to="/saved-videos">
-            <MenuItemContainer onClick={onClickSavedVideosTab}>
+            <MenuItemContainer
+              onClick={onClickSavedVideosTab}
+              bgColor={activeTab === 'SavedVideos' ? activeTabBg : 'none'}
+            >
               <BiListPlus
                 size="20"
                 color={activeTab === 'SavedVideos' ? '#ff0b37' : '#909090'}
               />
-              <MenuItemName>Saved videos</MenuItemName>
+              <MenuItemName textColor={textColor}>Saved videos</MenuItemName>
             </MenuItemContainer>
           </NavLink>
         </MenuItemsListContainer>
